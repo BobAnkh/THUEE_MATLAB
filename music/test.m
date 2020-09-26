@@ -1,0 +1,11 @@
+clear all;
+[x,y]=meshgrid(-100:1:100,-100:1:100);
+eps0=8.854*10^-12;
+Q1=8*pi*eps0;
+Q2=-4*pi*eps0;
+phi=Q1./(4*pi*eps0*sqrt((x+10.5).^2+y.^2))+Q2./(4*pi*eps0*sqrt((x-10.5).^2+y.^2));
+contour(x,y,phi,-0.5:0.002:0.5);
+axis equal;
+xticks(-100:20:100);
+yticks(-100:20:100);
+grid minor;

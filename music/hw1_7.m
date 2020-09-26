@@ -1,0 +1,13 @@
+close all;
+clc;
+load('Guitar.mat');
+len = length(realwave);
+wave = resample(realwave, 10, 1);
+%plot(wave);
+cut = reshape(wave, len, 10);
+processed_wave = mean(cut.');
+%plot(processed_wave);
+answer = resample(repmat(processed_wave,1,10), 1, 10);
+plot(answer,'r-*');
+hold on;
+plot(wave2proc,'b--o');
