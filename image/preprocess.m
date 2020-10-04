@@ -1,5 +1,7 @@
 function image_processed = preprocess(image)
-image_processed = int16(image);
+%prepocess 预处理图像，将宽高补足成8的倍数并减去128
+%   image:原始图像
+image_processed = double(image);
 [h, w] = size(image_processed);
 a = mod(w, 8);
 b = mod(h, 8);
@@ -22,4 +24,3 @@ if b ~= 0
 end
 image_processed = image_processed - 128;
 end
-

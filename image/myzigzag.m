@@ -1,12 +1,10 @@
 function vector = myzigzag(matrix)
-% 针对本大作业独特情况，8x8分块采用更高效的索引法，同时也给出更通用但是效率相对差一些的循环法
+%myzigzag 实现zigzag扫描
+%   matrix:需要进行zigzag扫描的矩阵
 [h, w] = size(matrix);
-% 这个if可能已经不需要了
-if h == 1 && w == 1
-    vector = matrix;
-elseif h == 8 && w == 8
+% 针对本大作业独特情况，8x8分块采用更高效的索引法
+if h == 8 && w == 8
     vector = reshape(matrix', 1, 64);
-% index需要再检查一遍
     index = [1, 2, 9, 17, 10, 3, 4, 11,...
     18, 25, 33, 26, 19, 12, 5, 6,...
     13, 20, 27, 34, 41, 49, 42, 35,...
@@ -16,13 +14,14 @@ elseif h == 8 && w == 8
     59, 60, 53, 46, 39, 32, 40, 47,...
     54, 61, 62, 55, 48, 56, 63, 64];
     vector = vector(index);
+% 也给出更通用但是效率相对差一些的循环法
 else
     row = 1;
     col = 1;
     pos = 1;
     % 方向，第一维表示纵向，第二维表示横向
     direction = [-1, 1];
-    vector = zeros(1, h*w);
+    vector = zeros(1, h * w);
     while( row <= h && col <= w)
         vector(pos) = matrix(row, col);
         if isequal(direction, [-1, 1]) && row == 1 && col ~= w
@@ -61,8 +60,6 @@ else
             col = col + 1;
         end
         pos = pos + 1;
-    end
-        
+    end 
 end
 end
-
